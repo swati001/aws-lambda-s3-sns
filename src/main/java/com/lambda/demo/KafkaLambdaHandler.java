@@ -24,12 +24,7 @@ public class KafkaLambdaHandler implements RequestHandler<Map<String,Object>, Ma
         props.put("bootstrap.servers", BOOTSTRAP_SERVERS);
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        // Uncomment and configure if your cluster requires SASL/SSL
-        // props.put("security.protocol", "SASL_SSL");
-        // props.put("sasl.mechanism", "SCRAM-SHA-512");
-        // props.put("sasl.jaas.config", "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"your_username\" password=\"your_password\";");
-        // props.put("ssl.truststore.location", "/tmp/kafka.client.truststore.jks"); // Make sure truststore is available
-
+       
         return new KafkaProducer<>(props);
     }
 	@Override
