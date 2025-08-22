@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 import com.amazonaws.AmazonServiceException;
@@ -46,7 +48,7 @@ public class S3EventHandler implements Function<S3EventNotification, String> {
 		String bucketName = input.getS3().getBucket().getName();
 		String key = input.getS3().getObject().getKey();
 		if (key.startsWith("thumbnails/")) {
-            return;
+			return;
         }
 		//sns.publish(topicArn,"File uploaded to  "+bucketName+" key: "+key);
 		if(key.endsWith(".png") || key.endsWith(".jpg"))  {
@@ -72,6 +74,8 @@ public class S3EventHandler implements Function<S3EventNotification, String> {
 			}
 		}
 		});
+		
+		
 		return "ok";
 	}
 
